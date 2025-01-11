@@ -1,59 +1,91 @@
 import './App.scss'
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { IoHome } from "react-icons/io5";
-import mainRoute from './routers/MainRouter'
-import { FaArrowUpFromWaterPump } from "react-icons/fa6";
-import { IoMdCheckboxOutline } from "react-icons/io";
-import { LuSettings2 } from "react-icons/lu";
-import Loader from './common/Loader';
-import { PageName } from './types/routerType';
+import app from './routers/AppRouter';
+import { IoIosArrowDropleft } from 'react-icons/io'
+import Loader from './common/Loader'
+import project from './routers/ProjectRouter';
+import { IoIosArrowDropright } from "react-icons/io"
 
 function App() {
-
+  const [toggleNav,setToggleNav] = useState<boolean>(false)
   const [state,setState] = useState<number>(0)
 
-  const [pages,setPages] = useState<PageName[]>([
-    "portfolio",
-    "about",
-    "project",
-    "setting"
-  ])
-  const [icons,setIcons] = useState([
-    <IoHome />,
-    <IoMdCheckboxOutline />,
-    <FaArrowUpFromWaterPump />,
-    <LuSettings2 />
-  ])
+  const setlocalStorageState = (state:number) =>{
+    setState(state)
+    localStorage.setItem("state",JSON.stringify(state))
+  }
 
-  
+  useEffect(()=>{
+    setState(Number(localStorage.getItem("state")))
+  },[])
 
   return (
     <>
-    <Suspense fallback={(<Loader/>)}>
-      <Router>
-      <div className='display'>
-        <nav>
-          {
-            pages.map((data,i)=>(
-              <Link key={i} to={mainRoute[data]?.path || "/"} className='link' onClick={()=>setState(i)} style={{
-                color:state==i?"#8235d98a":""
-              }}>{icons[i]}<div className='path'>{data}</div></Link>    
-            ))
-          }
-        </nav>
-        <Routes>
-          {
-            pages.map((page)=>(
-              <Route element={mainRoute[page].element} path={mainRoute[page].path}/>
-            ))
-          }
-        </Routes>
-      </div>
-      </Router>
+      <Suspense fallback={<Loader />}>
+        <Router>
+          <div className="display">
+            <nav className='navbar'>
+          <div
+          onClick={()=>setToggleNav((old)=>!old)}
+          className='navDiv'
+          >
+            <IoIosArrowDropleft
+              className='openNav'
+              style={{
+                display:toggleNav?"block":"none"
+              }}
+            />
+            <IoIosArrowDropright
+              className='openNav'
+              style={{
+                display:toggleNav?"none":"block"
+              }}
+            />
+            </div>
+              {app.map((page, i) => (
+                <Link
+                  key={i}
+                  to={app[i].path}
+                  className="link"
+                  onClick={() => setlocalStorageState(i)}
+                  style={{
+                    color: state == i ? "#F1F0E8" : "",
+                  }}
+                >
+                  {app[i].icon}
+                  <div
+                    className="path"
+                    style={{
+                      display: toggleNav ? "block" : "none",
+                    }}
+                  >
+                    {page.name}
+                  </div>
+                </Link>
+              ))}
+            </nav>
+            <Routes>
+              {app.map((page) => (
+                <Route
+                  key={`${page.path}`}
+                  element={page.element}
+                  path={page.path}
+                />
+              ))}
+              {project.map((page)=>(
+                <Route
+                  key={`${page.path}`}
+                  element = {page.element}
+                  path= {page.path}
+                />
+              ))}
+            </Routes>
+          </div>
+        </Router>
       </Suspense>
     </>
-  )
+  );
 }
 
 export default App
