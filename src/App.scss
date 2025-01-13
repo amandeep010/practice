@@ -1,89 +1,93 @@
-*{
-   overflow-y: hidden;
-   overflow-x: hidden;
+* {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    cursor: url("./assets//cursor.png") 0 0, auto
 }
 
-
-nav {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: primary-color;
-    background: linear-gradient(to bottom, #fca3f3, #a9e4f5);
-    background-color: #1F124B;
-    padding-inline: 8px;
+.headder{
+    background-color: #01413E;
+    padding: 18px;
     text-align: center;
-    margin-right: 8px;
-    padding-top: 10px;
-    border-radius: 8px;
-    width: 10%;
-}
-
-.path{
-    width: 100%;
-}
-
-.link {
-    color: black;
-    text-decoration: none;
-    padding: 5px;
-    border-radius: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: center;
-    &:hover {
-        background-color: rgba($color: white, $alpha: .2);
-        color: white;
-    }
-}
-
-.openNav {
-    height: 22px;
-    width: 22px;
     color: white;
-    &:hover {
-        color: #8235d98a;
-        cursor: pointer;
-    }
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
-.navbar{
-    width: auto;
-}
 
 .display {
     display: flex;
+    &>.navbar {
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            cursor: url(./assets/pointer.png);
+            height: 100vh;
+            background: linear-gradient(to bottom, #01413E, #01413E);
+            padding-inline: 8px;
+            margin-right: 8px;
+            padding-top: 10px;
+            border-radius: 8px;
+            @media screen and (max-width: 600px) {
+                display: none;
+              }
+        &>.link {
+            color: black;
+            text-decoration: none;
+            padding: 5px;
+            font-size: large;
+            border-radius: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            transition: background-color 0.5s ease;
+            &:hover {
+                background-color: rgba($color: white, $alpha: .2);
+                color: white;
+            }
+        }
+    }
+}
+
+.path{
+    padding: 0 20px 0 10px;
 }
 
 .pages {
-    background: linear-gradient(to bottom, #fca3f3, #a9e4f5);
+    background: linear-gradient(to bottom, #01413E, #01413E);
     border-radius: 8px;
     width: 100%;
+    padding: 18px;
     height: 100vh;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 5px; /* Set the scrollbar width */
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: #fca3f3; /* Scrollbar color */
-        border-radius: 10px; /* Rounded edges */
-    }
-    &::-webkit-scrollbar-track {
-        background: #a9e4f5; /* Background of the scrollbar track */
-    }
+    cursor: url('./assets/cursor.png') 16 16;
 }
 
-.navDiv {
-    border-radius: 8px;
-    margin-bottom: 200px;
-    margin-top: 0px;
+
+h1 {
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    font-family: Cursive, Arial, sans-serif;
+    font-weight: bold;
+}
+
+div {
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    font-family: Cursive, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.main-back{
+    position: absolute;
+    top: 45px;
+    left: 15px;
     padding: 5px;
-    &:hover {
-        cursor: pointer;
-        background-color: rgba($color: white, $alpha: 0.2);
-        display: flex;
-        text-align: center;
+    transform: 4s ease;
+    cursor: url("./assets/pointer.png") 0 0, auto;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+    &:hover{
+        background-color: white;
     }
 }

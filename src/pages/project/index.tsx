@@ -1,11 +1,8 @@
 import React from "react";
 import { RxExit } from "react-icons/rx";
 import "./styles.scss";
-import project from "../../routers/ProjectRouter";
-import { useNavigate } from "react-router-dom";
 
 function index() {
-  const navigate = useNavigate();
   return (
     <div className="pages">
       <div className="project">
@@ -24,20 +21,6 @@ function index() {
           </a>
         </div>
       </div>
-      {project.map((data) => (
-        <div key={data.path}
-          className="anchorDiv"
-        > 
-          <a
-            onClick={() => {
-              navigate(data.path);
-            }}
-            style={{ cursor: "pointer", textDecoration: "none" }}
-          >
-            {data.name}
-          </a>
-        </div>
-      ))}
     </div>
   );
 }

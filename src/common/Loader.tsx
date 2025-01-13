@@ -1,18 +1,18 @@
-import React from "react"
+import React from "react";
 
 function Loader() {
   return (
     <div
-        style={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",            
-            height:"100vh",
-        }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
     >
-        Loading.....
+      Loading.....
     </div>
-  )
+  );
 }
 
-export default Loader
+export default Loader;

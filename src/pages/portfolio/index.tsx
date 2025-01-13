@@ -1,24 +1,17 @@
-import { useState } from "react"
-import "./styles.scss"
-import mesh from "../../assets/mesh.svg"
-
-interface language {
-  name: string,
-  value: any
-}
+import "./styles.scss";
+import React from "react";
+import smiley from "../../assets/smiley.png"
 
 function index() {
- 
   return (
-    <div className='pages'>
-      <div className="div-content">
-        <img src={mesh} alt="Welcome" height={"400vh"} width={"100%"} style={{marginTop:"8px"}}/>
-        <h2>What we offer</h2>
-        
+    <div className="pages">
+      <h4><img src={smiley} width="30px"/>Hii there,i am _<span>Aman Deep Rawat</span>!</h4>
+      <div className="portfolio">
+        A full Stack Developer,
+        Who will convert your imagination to a canvas.
       </div>
-
     </div>
-  )
+  );
 }
 
-export default index
+export default index;
